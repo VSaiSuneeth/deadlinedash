@@ -19,7 +19,9 @@ HTML5, CSS3, vanilla JavaScript, inline SVG, and browser `localStorage`. No fram
 
 ## Screenshot
 
-_Add a screenshot of the running dashboard here._
+![Live DeadlineDash dashboard](screenshot.png)
+
+_Live DeadlineDash dashboard._
 
 ## Run locally
 
