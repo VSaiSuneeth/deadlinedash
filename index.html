@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="Stay ahead of every deadline with DeadlineDash, your calm and focused student dashboard.">
+  <title>DeadlineDash — Stay ahead of every deadline</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="DeadlineDash home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><rect width="40" height="40" rx="13" fill="currentColor"/><path d="M11 24.5 18 17l5 5 7-9" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="13" r="2" fill="white"/></svg></span>
+        <span class="brand-copy"><strong>DeadlineDash</strong><small>Stay ahead of every deadline.</small></span>
+      </a>
+      <div class="top-actions"><div class="today"><span class="today-dot"></span><span id="current-date"></span></div><div class="streak-pill" title="Your current study streak"><span class="flame" aria-hidden="true">♨</span><span><b id="header-streak">0</b> day streak</span></div><button class="icon-button" id="theme-toggle" type="button" aria-label="Switch color theme" title="Switch theme"><svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button></div>
+    </header>
+    <main id="main">
+      <section class="welcome-row"><div><p class="eyebrow">YOUR STUDY SPACE</p><h1>Make room for <em>what matters.</em></h1><p class="intro">A little clarity goes a long way. Here’s what’s on your horizon.</p></div><button id="export-button" class="button button-quiet" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg> Export data</button></section>
+      <section class="stats-grid" aria-label="Deadline summary">
+        <article class="stat-card"><span class="stat-label">Total deadlines</span><div class="stat-bottom"><strong id="stat-total">0</strong><span class="stat-icon violet">▤</span></div><span class="stat-note">Across all your subjects</span></article>
+        <article class="stat-card"><span class="stat-label">Coming up</span><div class="stat-bottom"><strong id="stat-upcoming">0</strong><span class="stat-icon blue">↗</span></div><span class="stat-note">Still ahead of you</span></article>
+        <article class="stat-card"><span class="stat-label">Completed</span><div class="stat-bottom"><strong id="stat-completed">0</strong><span class="stat-icon green">✓</span></div><span class="stat-note">Look at you go</span></article>
+        <article class="stat-card"><span class="stat-label">Overdue</span><div class="stat-bottom"><strong id="stat-overdue">0</strong><span class="stat-icon coral">⌁</span></div><span class="stat-note">Ready for a fresh plan</span></article>
+      </section>
+      <section class="hero-grid" aria-label="Focus and study streak">
+        <article class="focus-card panel"><div class="focus-copy"><p class="eyebrow">UP NEXT</p><h2 id="focus-title">You’re all caught up.</h2><p id="focus-subtitle">Add a deadline and we’ll keep an eye on the clock.</p><div class="focus-meta" id="focus-meta" hidden><span class="subject-badge" id="focus-subject"></span><span id="focus-due"></span></div></div><div class="ring-wrap" id="ring-wrap"><svg class="countdown-ring" viewBox="0 0 160 160" role="img" aria-labelledby="ring-title ring-desc"><title id="ring-title">Countdown to next deadline</title><desc id="ring-desc">No upcoming deadlines</desc><circle class="ring-track" cx="80" cy="80" r="68"/><circle class="ring-progress" id="ring-progress" cx="80" cy="80" r="68"/></svg><div class="ring-center" id="ring-center"><strong id="ring-days">—</strong><span>days</span><small id="ring-time">No rush</small></div></div></article>
+        <article class="streak-card panel"><div class="streak-heading"><div><p class="eyebrow">SHOW UP FOR YOU</p><h2>Study streak</h2></div><div class="streak-fire" aria-hidden="true">♨</div></div><div class="streak-numbers"><div><strong id="streak-current">0</strong><span>current streak</span></div><div class="streak-divider"></div><div><strong id="streak-best">0</strong><span>best streak</span></div></div><p class="streak-message" id="streak-message">Small steps count. Mark today when you study.</p><button class="button button-dark" id="study-button" type="button">I studied today <span aria-hidden="true">→</span></button></article>
+      </section>
+      <section class="workspace-grid">
+        <aside class="add-panel panel" aria-labelledby="add-heading"><div class="section-heading"><div><p class="eyebrow">PLAN AHEAD</p><h2 id="add-heading">Add a deadline</h2></div><span class="heading-spark" aria-hidden="true">✳</span></div><p class="panel-description">Get it out of your head and onto your list.</p>
+          <form id="deadline-form" novalidate>
+            <label class="field-label" for="title">What’s due?</label><input id="title" name="title" type="text" maxlength="120" placeholder="e.g. Research paper draft" required aria-describedby="title-error"><span class="field-error" id="title-error"></span>
+            <label class="field-label" for="subject">Subject</label><input id="subject" name="subject" type="text" maxlength="60" placeholder="e.g. Environmental Science" required aria-describedby="subject-error"><span class="field-error" id="subject-error"></span>
+            <div class="field-row"><div class="field-grow"><label class="field-label" for="due-date">Due date</label><input id="due-date" name="due-date" type="date" required aria-describedby="date-error"><span class="field-error" id="date-error"></span></div><div class="field-time"><label class="field-label" for="due-time">Time</label><input id="due-time" name="due-time" type="time" value="23:59" required aria-describedby="time-error"><span class="field-error" id="time-error"></span></div></div>
+            <label class="field-label" for="color">Color tag</label><div class="select-wrap"><select id="color" name="color"><option value="violet">Lavender</option><option value="blue">Ocean</option><option value="green">Sage</option><option value="coral">Coral</option><option value="amber">Sunshine</option></select><span class="select-arrow" aria-hidden="true">⌄</span></div>
+            <button class="button button-primary add-button" type="submit"><span aria-hidden="true">＋</span> Add deadline</button>
+          </form><div class="import-row"><span>Moving from another device?</span><button id="import-button" class="text-button" type="button">Import data</button><input id="import-file" type="file" accept="application/json,.json" hidden></div>
+        </aside>
+        <section class="deadlines-section" aria-labelledby="deadlines-heading"><div class="deadlines-header"><div><p class="eyebrow">YOUR WORKLOAD</p><h2 id="deadlines-heading">All deadlines <span id="list-count" class="count-chip">0</span></h2></div><button id="clear-filters" class="text-button clear-button" type="button">Clear filters</button></div>
+          <div class="filter-bar"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><span class="sr-only">Search deadlines by title</span><input id="search-input" type="search" placeholder="Search deadlines…"></label><label class="sr-only" for="subject-filter">Filter by subject</label><select id="subject-filter" class="filter-select"><option value="">All subjects</option></select><label class="sr-only" for="status-filter">Filter by status</label><select id="status-filter" class="filter-select"><option value="all">All status</option><option value="upcoming">Upcoming</option><option value="completed">Completed</option><option value="overdue">Overdue</option></select></div>
+          <div class="deadline-list" id="deadline-list" aria-live="polite"></div>
+          <div class="empty-state" id="empty-state"><div class="empty-illustration" aria-hidden="true"><span>✳</span><span>☼</span><span>⌁</span></div><h3 id="empty-title">A fresh page.</h3><p id="empty-copy">Add your first deadline and make a little plan for future you.</p></div>
+        </section>
+      </section>
+      <footer class="footer"><span>Made for the work you’re proud of.</span><span>One thing at a time <span class="footer-heart">♥</span></span></footer>
+    </main>
+  </div>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <dialog id="confirm-dialog" class="confirm-dialog"><form method="dialog"><p class="eyebrow">ONE LAST CHECK</p><h2>Delete this deadline?</h2><p>This can’t be undone, but you can always add it again.</p><div class="dialog-actions"><button class="button button-quiet" value="cancel">Keep it</button><button class="button button-danger" value="confirm">Delete</button></div></form></dialog>
+</body>
+</html>
