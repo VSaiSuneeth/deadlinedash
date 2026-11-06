@@ -43,9 +43,9 @@ deadlinedash/
 
 DeadlineDash stores deadlines, study check-ins, and the selected theme in separate versioned localStorage keys. Data is kept on the current browser and device; it is not synced or sent elsewhere. Use **Export data** to download a JSON backup before clearing browser data or switching devices. Import merges deadlines by their IDs and combines study-day records. Corrupted or malformed saved deadline records are ignored when the app loads.
 
-## Built with OpenAI Codex
+## Built with Cursor
 
-OpenAI Codex assisted with implementing and refining this framework-free, static-browser application.
+DeadlineDash was built with Cursor and refined as a framework-free, static-browser application.
 
 ## Future roadmap
 
