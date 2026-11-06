@@ -134,7 +134,12 @@
   function applyTheme(theme) {document.documentElement.dataset.theme=theme;$('#theme-toggle').setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme');try{localStorage.setItem(THEME_KEY,theme);}catch{}}
   function initTheme(){let saved;try{saved=localStorage.getItem(THEME_KEY);}catch{};const theme=saved==='dark'||saved==='light'?saved:(window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light');applyTheme(theme);}
   els.form.addEventListener('submit',event=>{event.preventDefault();if(!validateForm()){const bad=els.form.querySelector('.has-error');bad?.focus();return;}deadlines.push({id:crypto.randomUUID?.()||`${Date.now()}-${Math.random()}`,title:els.title.value.trim(),subject:els.subject.value.trim(),date:els.date.value,time:els.time.value,color:els.color.value,createdAt:Date.now(),completed:false});saveAll();els.form.reset();els.time.value='23:59';els.color.value='violet';els.form.querySelectorAll('.has-error').forEach(x=>x.classList.remove('has-error'));els.form.querySelectorAll('.field-error').forEach(x=>x.textContent='');render();toast('Deadline added. Future you says thanks!');});
-  els.form.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{input.classList.remove('has-error');const err=$(`#${input.id==='due-date'?'date':input.id}-error`);if(err)err.textContent='';}));
+  els.form.querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{
+    input.classList.remove('has-error');
+    const errorId = input.id === 'due-date' ? 'date-error' : input.id === 'due-time' ? 'time-error' : `${input.id}-error`;
+    const err = $(`#${errorId}`);
+    if (err) err.textContent = '';
+  }));
   els.list.addEventListener('click',event=>{const button=event.target.closest('button[data-action]');if(!button)return;const card=button.closest('.deadline-card'),item=deadlines.find(x=>x.id===card?.dataset.id);if(!item)return;if(button.dataset.action==='toggle'){item.completed=!item.completed;saveAll();render();toast(item.completed?'Deadline marked complete.':'Deadline moved back to your list.');}else{pendingDeleteId=item.id;if(typeof els.confirm.showModal==='function')els.confirm.showModal();else if(window.confirm('Delete this deadline?')) deletePending();}});
   function deletePending(){if(!pendingDeleteId)return;deadlines=deadlines.filter(x=>x.id!==pendingDeleteId);pendingDeleteId=null;saveAll();render();toast('Deadline deleted.');}
   els.confirm.addEventListener('close',()=>{if(els.confirm.returnValue==='confirm')deletePending();else pendingDeleteId=null;});
